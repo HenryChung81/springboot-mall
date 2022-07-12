@@ -2,6 +2,7 @@ package com.example.springbootmall.controller;
 
 import java.util.List;
 
+import javax.print.attribute.standard.PageRanges;
 import javax.validation.Valid;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -24,6 +25,7 @@ import com.example.springbootmall.dto.ProductQueryParams;
 import com.example.springbootmall.dto.ProductRequest;
 import com.example.springbootmall.model.Product;
 import com.example.springbootmall.service.ProductService;
+import com.example.springbootmall.util.Page;
 
 @Validated
 @RestController
@@ -33,7 +35,7 @@ public class ProductController {
   private ProductService productService;
 
   @GetMapping("products")
-  public ResponseEntity<List<Product>> getProducts(
+  public ResponseEntity<Page<Product>> getProducts(
     // Filtering
     @RequestParam(required = false) ProductCategory category,
     @RequestParam(required = false) String search,
@@ -56,10 +58,20 @@ public class ProductController {
     productQueryParams.setLimit(limit);
     productQueryParams.setOffset(offset);
 
+    // get product list
     List<Product> productList = productService.getProducts(productQueryParams);
 
+    // get product total count
+    Integer total = productService.countProduct(productQueryParams);
 
-    return ResponseEntity.status(HttpStatus.OK).body(productList);
+    // Pagination
+    Page<Product> page = new Page<>();
+    page.setLimit(limit);
+    page.setOffset(offset);
+    page.setTotal(total);
+    page.setResults(productList);
+
+    return ResponseEntity.status(HttpStatus.OK).body(page);
     
   }
 

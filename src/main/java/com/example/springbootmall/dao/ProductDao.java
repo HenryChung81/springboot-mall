@@ -2,11 +2,14 @@ package com.example.springbootmall.dao;
 
 import java.util.List;
 
+
 import com.example.springbootmall.dto.ProductQueryParams;
 import com.example.springbootmall.dto.ProductRequest;
 import com.example.springbootmall.model.Product;
 
 public interface ProductDao {
+
+  Integer countProduct(ProductQueryParams productQueryParams);
 
   List<Product> getProducts(ProductQueryParams productQueryParams);
   
