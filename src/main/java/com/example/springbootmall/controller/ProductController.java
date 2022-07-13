@@ -2,7 +2,6 @@ package com.example.springbootmall.controller;
 
 import java.util.List;
 
-import javax.print.attribute.standard.PageRanges;
 import javax.validation.Valid;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
