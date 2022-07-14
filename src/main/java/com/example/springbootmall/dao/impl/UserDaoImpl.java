@@ -38,9 +38,6 @@ public class UserDaoImpl implements UserDao {
     }
   }
 
-  
-
-
   @Override
   public User getUserByEmail(String email) {
     String sql = "SELECT user_id, email, password, created_date, last_modified_date FROM user WHERE email = :email";
@@ -56,9 +53,6 @@ public class UserDaoImpl implements UserDao {
       return null;
     }
   }
-
-
-
 
   @Override
   public Integer createUser(UserRegisterRequest userRegisterRequest) {
