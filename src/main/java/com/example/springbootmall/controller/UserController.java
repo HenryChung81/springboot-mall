@@ -2,7 +2,6 @@ package com.example.springbootmall.controller;
 
 import javax.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,8 +16,11 @@ import com.example.springbootmall.service.UserService;
 @RestController
 public class UserController {
 
-  @Autowired
-  private UserService userService;
+  private final UserService userService;
+
+  public UserController(UserService userService) {
+    this.userService = userService;
+  }
 
   @PostMapping("users/register")
   public ResponseEntity<User> register(@RequestBody @Valid UserRegisterRequest userRegisterRequest) {
