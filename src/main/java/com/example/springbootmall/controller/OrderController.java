@@ -6,7 +6,6 @@ import javax.validation.Valid;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,14 +21,13 @@ import com.example.springbootmall.model.Order;
 import com.example.springbootmall.service.OrderService;
 import com.example.springbootmall.util.Page;
 
+import lombok.RequiredArgsConstructor;
+
 @RestController
+@RequiredArgsConstructor
 public class OrderController {
 
   private final OrderService orderService;
-
-  public OrderController(OrderService orderService) {
-    this.orderService = orderService;
-  }
 
   @GetMapping("/users/{userId}/orders")
   public ResponseEntity<Page<Order>> getOrders(

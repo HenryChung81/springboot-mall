@@ -11,11 +11,13 @@ import com.example.springbootmall.dto.ProductRequest;
 import com.example.springbootmall.model.Product;
 import com.example.springbootmall.service.ProductService;
 
+import lombok.RequiredArgsConstructor;
+
 @Component
+@RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
 
-  @Autowired
-  private ProductDao productDao;
+  private final ProductDao productDao;
 
   @Override
   public Integer countProduct(ProductQueryParams productQueryParams) {

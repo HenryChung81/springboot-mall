@@ -2,7 +2,6 @@ package com.example.springbootmall.service.impl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.util.DigestUtils;
@@ -14,13 +13,15 @@ import com.example.springbootmall.dto.UserRegisterRequest;
 import com.example.springbootmall.model.User;
 import com.example.springbootmall.service.UserService;
 
+import lombok.RequiredArgsConstructor;
+
 @Component
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
   
   private final static Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
   
-  @Autowired
-  private UserDao userDao;
+  private final UserDao userDao;
 
   @Override
   public User getUserById(Integer userId) {

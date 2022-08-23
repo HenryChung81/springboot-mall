@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,19 +22,19 @@ import com.example.springbootmall.model.Product;
 import com.example.springbootmall.model.User;
 import com.example.springbootmall.service.OrderService;
 
+import lombok.RequiredArgsConstructor;
+
 @Component
+@RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
 
   private final static Logger log = LoggerFactory.getLogger(OrderServiceImpl.class);
 
-  @Autowired
-  private OrderDao orderDao;
+  private final OrderDao orderDao;
 
-  @Autowired
-  private ProductDao productDao;
+  private final ProductDao productDao;
 
-  @Autowired
-  private UserDao userDao;
+  private final UserDao userDao;
 
   @Override
   public Integer countOrder(OrderQueryParams orderQueryParams) {

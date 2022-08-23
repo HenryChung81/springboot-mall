@@ -25,15 +25,14 @@ import com.example.springbootmall.model.Product;
 import com.example.springbootmall.service.ProductService;
 import com.example.springbootmall.util.Page;
 
+import lombok.RequiredArgsConstructor;
+
 @Validated
 @RestController
+@RequiredArgsConstructor
 public class ProductController {
 
   private final ProductService productService;
-
-  public ProductController(ProductService productService) {
-    this.productService = productService;
-  }
 
   @GetMapping("products")
   public ResponseEntity<Page<Product>> getProducts(

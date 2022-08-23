@@ -13,14 +13,13 @@ import com.example.springbootmall.dto.UserRegisterRequest;
 import com.example.springbootmall.model.User;
 import com.example.springbootmall.service.UserService;
 
+import lombok.RequiredArgsConstructor;
+
 @RestController
+@RequiredArgsConstructor
 public class UserController {
 
   private final UserService userService;
-
-  public UserController(UserService userService) {
-    this.userService = userService;
-  }
 
   @PostMapping("users/register")
   public ResponseEntity<User> register(@RequestBody @Valid UserRegisterRequest userRegisterRequest) {
